@@ -12,20 +12,23 @@ export default class BookCardComponent {
         if (!!this.book.formats["image/jpeg"]) {
             html = `
             <img src="${this.book.formats["image/jpeg"]}">
-            <h3>${this.book.title}</h3>
+            <span>${this.book.title}</span>
             `
         } else {
             html = `
             <img src="https://cdn.bakerpublishinggroup.com/covers/listing/missing.png">
-            <h3>${this.book.title}</h3>
+            <span>${this.book.title}</span>
             `
         }
         bookContainer.innerHTML = html;
+        bookContainer.className = 'book-card';
 
         const saveButton = document.createElement('button');
-        saveButton.addEventListener('click', (event) => this.saveBook(event));
+        // saveButton.innerHTML = '<img src="images\ok.png" />';
+        saveButton.addEventListener('click', (event) => this.saveBook(event, saveButton));
 
-        const node = document.createTextNode('<3');
+        let node = document.createTextNode('<3');
+
         saveButton.appendChild(node);
         bookContainer.appendChild(saveButton);
 
@@ -37,11 +40,10 @@ export default class BookCardComponent {
         return bookContainer;
     }
 
-    saveBook(event) {
-
+    saveBook(event, button) {
         event.preventDefault();
+        button.id = "" + this.book.id;
         this.storageService.save(this.book);
-
     }
 
 }

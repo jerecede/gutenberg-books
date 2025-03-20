@@ -1,12 +1,40 @@
 body {
   margin: 0px;
   padding: 0px;
-
 }
 
 .book-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  align-items: center;
-  justify-items: center;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
+
+.book-card {
+  border: 1px black solid;
+  height: 275px;
+  width: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 6px 4px 0px 0px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  /* transition: transform 750ms ease-out; */
+}
+
+.book-card:hover {
+  transform: scale(1.1);
+  transition: .5s ease;
+}
+
+.book-card img {
+  height: 200px;
+  object-fit: contain;
+}
+/* height: 200px;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important; */
+

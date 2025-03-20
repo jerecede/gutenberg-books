@@ -6,3 +6,7 @@ const sService = new StorageService();
 const starredPageC = new StarredPageComponent(sService);
 
 starredPageC.start();
+
+const saveButton = document.getElementById("26184");
+console.log(saveButton);
+saveButton.addEventListener('click', () => location.reload());

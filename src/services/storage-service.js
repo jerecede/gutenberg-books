@@ -5,10 +5,8 @@ export default class StorageService {
 
         if (starredBookString) {
             let starredBooks = JSON.parse(starredBookString);
-            console.log(starredBooks);
             if (starredBooks.some(b => b.id === book.id)) {
                 starredBooks = starredBooks.filter(b => b.id !== book.id);
-
             } else {
                 starredBooks.push(book);
             }
