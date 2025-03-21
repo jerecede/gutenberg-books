@@ -44,11 +44,6 @@ export default class BookCardComponent {
         saveButton.appendChild(node);
         bookContainer.appendChild(saveButton);
 
-        /// per fare un checkbox!
-        // const saveButton = document.createElement('input');
-        // saveButton.type = "checkbox";
-        // bookContainer.appendChild(saveButton);
-
         return bookContainer;
     }
 
