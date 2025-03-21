@@ -30,12 +30,16 @@ body {
 }
 
 .book-card .cover-book {
-  height: 200px;
+  height: 65%;
   object-fit: contain;
 }
 
+/* .book-card span{
+  height: 10%;
+} */
+
 .book-card .heart {
-  height: 50px;
+  height: 10%;
   object-fit: contain;
 }
 
