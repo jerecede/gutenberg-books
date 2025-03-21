@@ -5,9 +5,6 @@ export default class HomePageComponent {
     constructor(bookService, storageService) {
         this.bookService = bookService;
         this.storageService = storageService;
-        this.title = '';
-        this.topic = '';
-        this.page = 1;
     }
 
     async start() {
