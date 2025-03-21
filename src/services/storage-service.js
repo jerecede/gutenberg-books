@@ -35,5 +35,15 @@ export default class StorageService {
         }
     }
 
+    isStarred(book){
+        const starredBookString = localStorage.getItem('starred');
 
+        if (starredBookString) {
+            const starredBooks = JSON.parse(starredBookString);
+            return starredBooks.some(b => b.id === book.id);
+
+        } else {
+            return false;
+        }
+    }
 }

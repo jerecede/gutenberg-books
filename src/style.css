@@ -13,7 +13,7 @@ body {
 
 .book-card {
   border: 1px black solid;
-  height: 275px;
+  height: 325px;
   width: 150px;
   border-radius: 8px;
   overflow: hidden;
@@ -29,12 +29,13 @@ body {
   transition: .5s ease;
 }
 
-.book-card img {
+.book-card .cover-book {
   height: 200px;
   object-fit: contain;
 }
-/* height: 200px;
-    background-size: contain !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important; */
+
+.book-card .heart {
+  height: 50px;
+  object-fit: contain;
+}
 

@@ -1,8 +1,12 @@
+import emptyHeart from '../../assets/heart pixel art 48x48_empty.png'
+import fullHeart from '../../assets/heart pixel art 48x48.png'
+
 export default class BookCardComponent {
 
     constructor(book, storageService) {
         this.book = book;
         this.storageService = storageService;
+        this.isFavorite = this.storageService.isStarred(this.book);
     }
 
     render() {
@@ -11,7 +15,7 @@ export default class BookCardComponent {
         let html = '';
         if (!!this.book.formats["image/jpeg"]) {
             html = `
-            <img src="${this.book.formats["image/jpeg"]}">
+            <img class="cover-book" src="${this.book.formats["image/jpeg"]}">
             <span>${this.book.title}</span>
             `
         } else {
@@ -23,9 +27,17 @@ export default class BookCardComponent {
         bookContainer.innerHTML = html;
         bookContainer.className = 'book-card';
 
-        const saveButton = document.createElement('button');
+        const saveButton = document.createElement('img');
+        saveButton.className = 'heart';
+
+        if(this.isFavorite){
+            saveButton.src = fullHeart;
+        } else {
+            saveButton.src = emptyHeart;
+        }
+
         // saveButton.innerHTML = '<img src="images\ok.png" />';
-        saveButton.addEventListener('click', (event) => this.saveBook(event, saveButton));
+        saveButton.addEventListener('click', (event) => this.saveBook(event, saveButton, bookContainer));
 
         let node = document.createTextNode('<3');
 
@@ -40,10 +52,17 @@ export default class BookCardComponent {
         return bookContainer;
     }
 
-    saveBook(event, button) {
+    saveBook(event, button, container) {
         event.preventDefault();
-        button.id = "" + this.book.id;
         this.storageService.save(this.book);
+        this.isFavorite = !this.isFavorite;
+        if(this.isFavorite){
+            button.src = fullHeart;
+        } else {
+            button.src = emptyHeart;
+            if(window.location.pathname.includes('starred.html')){
+                container.remove();
+            }
+        }
     }
-
 }
