@@ -5,6 +5,9 @@ export default class HomePageComponent {
     constructor(bookService, storageService) {
         this.bookService = bookService;
         this.storageService = storageService;
+        this.title = '';
+        this.topic = '';
+        this.page = 1;
     }
 
     async start() {
@@ -13,6 +16,9 @@ export default class HomePageComponent {
 
         const prevButton = document.getElementById('prev-button');
         prevButton.addEventListener('click', () => this.prevPressed());
+
+        const searchButton = document.getElementById('search-form');
+        searchButton.addEventListener('submit', (event) => this.searchSubmitted(event));
 
         this.books = await this.bookService.getData()
         this.render(this.books);
@@ -33,12 +39,26 @@ export default class HomePageComponent {
         this.bookService.nextPage();
         this.books = await this.bookService.getData()
         this.render(this.books);
-    }    
+    }
 
     async prevPressed() {
-        this.bookService.prevPage();
+        this.bookService.nextPage();
         this.books = await this.bookService.getData()
         this.render(this.books);
+    }
+
+    async searchSubmitted(event){
+        event.preventDefault();
+
+        const form = event.target;
+        const data = new FormData(form);
+        console.log(data);
+        
+        this.title = data.get('title');
+        this.topic = data.get('topic');
+
+        const books = await this.bookService.getDataSearch(this.title, this.topic);
+        this.render(books);
     }
 
 }
