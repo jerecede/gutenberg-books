@@ -1,5 +1,5 @@
-import emptyHeart from '../../assets/heart pixel art 48x48_empty.png'
-import fullHeart from '../../assets/heart pixel art 48x48.png'
+import emptyHeart from '../../assets/emptyheart.svg'
+import fullHeart from '../../assets/fullheart.svg'
 
 export default class BookCardComponent {
 
